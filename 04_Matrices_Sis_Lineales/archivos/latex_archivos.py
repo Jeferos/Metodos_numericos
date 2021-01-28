@@ -17,3 +17,16 @@ def ltx_matriz(m, nombre):
         dato += r'\\' 
     
     display(Math(r'$ %s = \begin{bmatrix}%s\end{bmatrix}$' %(nombre, dato)))
+    
+def ltx_sis_lin(m, ti):         
+    f, g = np.shape(m)        
+    for i in range(f):    
+        dato = ''
+        for j in range(g):
+            a = m[i, j]
+            if a < 0:
+                dato += '%s x_%s'%(a,j)
+            else:
+                dato += '+ %s x_%s'%(a,j)        
+        dato = dato.lstrip('+ ')
+        display(Math(r'$ %s  =  %s $' %(dato,ti[i,0])))
