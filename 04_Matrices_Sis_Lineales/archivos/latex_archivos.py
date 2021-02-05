@@ -20,13 +20,15 @@ def ltx_matriz(m, nombre):
     
 def ltx_sis_lin(m, ti):         
     f, g = np.shape(m)        
+    dato = ''
     for i in range(f):    
-        dato = ''
+        
         for j in range(g):
             a = m[i, j]
             if a < 0:
-                dato += '%s x_%s'%(a,j)
-            else:
+                dato += '%s x_%s'%(a,j)                           
+            elif a > 0:
                 dato += '+ %s x_%s'%(a,j)        
         dato = dato.lstrip('+ ')
-        display(Math(r'$ %s  =  %s $' %(dato,ti[i,0])))
+        dato += r' &=& %s \\ '%ti[i,0]        
+    display(Math(r'$ \begin{array}{rcl} %s \end{array}$' %dato))
